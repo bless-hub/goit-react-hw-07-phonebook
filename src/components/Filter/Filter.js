@@ -5,6 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import fadeFilter from "./Fadefilter.module.css";
 import taskActions from "../../redux/tasks/taskActions";
 import { connect } from "react-redux";
+import taskSelectors from "../../redux/tasks/taskSelectors";
 
 const Filter = ({ contacts, value, onChangeFilter }) => (
   <>
@@ -37,7 +38,7 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  value: state.tasks.filter,
+  value: taskSelectors.getFilter(state),
   contacts: state.tasks.items,
 });
 const mapDispatchToProps = {

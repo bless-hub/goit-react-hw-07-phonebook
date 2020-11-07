@@ -6,7 +6,6 @@ const addContact = ({ name, number }) => (dispatch) => {
   axios
     .post("http://localhost:2000/contacts", { name, number })
     .then((res) => {
-      console.log(res);
       dispatch(taskActions.addContactsSucces(res.data));
     })
     .catch((err) => dispatch(taskActions.addContactsErr(err)));

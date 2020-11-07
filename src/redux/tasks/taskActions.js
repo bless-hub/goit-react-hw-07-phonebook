@@ -1,7 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
-// import { v4 as uuid } from "uuid";
 import { createAction } from "@reduxjs/toolkit";
-// import taskTypes from "./tasksTypes";
 
 const addContactsRequest = createAction("contact/addRequest");
 const addContactsSucces = createAction("contact/addSucces");
@@ -17,6 +14,7 @@ const removeContactErr = createAction("contact/removeErr");
 
 const changeFilter = createAction("contact/changeFilter");
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   changeFilter,
   addContactsRequest,

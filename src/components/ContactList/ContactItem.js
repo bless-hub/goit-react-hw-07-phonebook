@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import taskOperations from "../../redux/tasks/taskOperations";
 import style from "./ContactList.module.css";
+import taskSelectors from "../../redux/tasks/taskSelectors";
 
 function ContactItem({ name, number, removeContact, id }) {
   return (
@@ -15,16 +16,14 @@ function ContactItem({ name, number, removeContact, id }) {
   );
 }
 ContactItem.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string,
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const item = state.tasks.items.find((item) => item.id === ownProps.id);
-  return {
-    ...item,
-  };
+  const contact = taskSelectors.getContactById(state, ownProps.id);
+  return { ...contact };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
