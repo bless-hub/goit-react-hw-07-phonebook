@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 import taskActions from "./taskActions";
 import { createReducer } from "@reduxjs/toolkit";
 import notification from "../../components/Notification/Notification";
-// import tasksTypes from "./tasksTypes";
 
 const addContactAction = (state, action) => {
   const newContact = action.payload;
@@ -20,8 +19,8 @@ const removeContactAction = (state, action) =>
   state.filter((contact) => contact.id !== action.payload);
 
 const items = createReducer([], {
-  [taskActions.fetchContactSucces]: (state, action) => action.payload,
-  [taskActions.addContactSucces]: addContactAction,
+  [taskActions.fetchContactsSucces]: (state, action) => action.payload,
+  [taskActions.addContactsSucces]: addContactAction,
   [taskActions.removeContactSucces]: removeContactAction,
 });
 

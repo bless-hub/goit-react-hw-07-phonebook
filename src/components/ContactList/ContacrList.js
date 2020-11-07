@@ -5,7 +5,6 @@ import ContactItem from "./ContactItem";
 import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import fade from "./fade.module.css";
-// import taskActions from "../../redux/tasks/taskActions";
 
 const ContactList = ({ contacts }) => (
   <>
@@ -26,14 +25,13 @@ const ContactList = ({ contacts }) => (
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
     })
   ),
 };
 const mapStateToProps = (state) => {
-  console.log(state.tasks);
   const visibleContacts = state.tasks.items.filter((task) =>
     task.name.toLowerCase().includes(state.tasks.filter.toLowerCase())
   );

@@ -1,43 +1,32 @@
 import taskActions from "./taskActions";
 import axios from "axios";
-// import { createReducer } from "@reduxjs/toolkit";
 
 const addContact = ({ name, number }) => (dispatch) => {
-  dispatch(taskActions.addContactRequest());
-
+  dispatch(taskActions.addContactsRequest());
   axios
     .post("http://localhost:2000/contacts", { name, number })
-    .then((res) => dispatch(taskActions.addContactSucces(res.data)))
-    .catch((err) => dispatch(taskActions.addContactError(err)));
+    .then((res) => {
+      console.log(res);
+      dispatch(taskActions.addContactsSucces(res.data));
+    })
+    .catch((err) => dispatch(taskActions.addContactsErr(err)));
 };
 
 const fetchContacts = () => (dispatch) => {
-  dispatch(taskActions.fetchContactRequest());
-
+  dispatch(taskActions.fetchContactsRequest());
   axios
     .get("http://localhost:2000/contacts")
-    .then((res) => dispatch(taskActions.fetchContactSucces(res.data)))
-    .catch((err) => dispatch(taskActions.fetchContactError(err)));
+    .then(({ data }) => dispatch(taskActions.fetchContactsSucces(data)))
+    .catch((err) => dispatch(taskActions.fetchContactsErr(err)));
 };
 
-const removeContacts = (id) => (dispatch) => {
-  dispatch(taskActions.removeContactRequest());
-
+const removeContact = (id) => (dispatch) => {
+  dispatch(taskActions.removeContactRequest);
   axios
     .delete(`http://localhost:2000/contacts/${id}`)
     .then(() => dispatch(taskActions.removeContactSucces(id)))
-    .catch((err) => dispatch(taskActions.removeContactError(err)));
+    .catch((err) => dispatch(taskActions.removeContactErr(err)));
 };
-
-// const loading = createReducer(false, {
-//   [taskActions.addContactRequest]: () => true,
-//   [taskActions.addContactSucces]: () => false,
-//   [taskActions.addContactError]: () => false,
-// });
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default {
-  addContact,
-  fetchContacts,
-  removeContacts,
-};
+export default { addContact, fetchContacts, removeContact };

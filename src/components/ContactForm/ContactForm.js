@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import style from "./ContactForm.module.css";
 import { connect } from "react-redux";
-// import taskActions from "../../redux/tasks/taskActions";
-import taskOperation from "../../redux/tasks/taskOperations";
+import taskOperations from "../../redux/tasks/taskOperations";
 import logo from "./Logo.module.css";
 import { CSSTransition } from "react-transition-group";
 
@@ -71,15 +70,7 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = {
-  addContact: taskOperation.addContact,
+  addContact: taskOperations.addContact,
 };
 
 export default connect(null, mapDispatchToProps)(ContactForm);
-
-//   handleContact = (e) => {
-//     this.setState({ name: e.target.value });
-//   };
-
-//   handleNumber = (e) => {
-//     this.setState({ number: e.target.value });
-//   };

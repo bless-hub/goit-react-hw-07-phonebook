@@ -1,32 +1,58 @@
+/* eslint-disable import/no-anonymous-default-export */
+// import { v4 as uuid } from "uuid";
 import { createAction } from "@reduxjs/toolkit";
+// import taskTypes from "./tasksTypes";
 
-const addContactRequest = createAction("contact/addRequest");
-const addContactSucces = createAction("contact/addSucces");
-const addContactError = createAction("contact/addErr");
+const addContactsRequest = createAction("contact/addRequest");
+const addContactsSucces = createAction("contact/addSucces");
+const addContactsErr = createAction("contact/addErr");
 
-const fetchContactRequest = createAction("contact/fetchRequest");
-const fetchContactSucces = createAction("contact/fetchSucces");
-const fetchContactError = createAction("contact/fetchErr");
+const fetchContactsRequest = createAction("contact/fetchRequest");
+const fetchContactsSucces = createAction("contact/fetchSucces");
+const fetchContactsErr = createAction("contact/fetchErr");
 
-const removeContactRequest = createAction("contact/addRequest");
-const removeContactSucces = createAction("contact/addSucces");
-const removeContactError = createAction("contact/addErr");
-
-const removeContact = createAction("contact/remove");
+const removeContactRequest = createAction("contact/removeRequest");
+const removeContactSucces = createAction("contact/removeSucces");
+const removeContactErr = createAction("contact/removeErr");
 
 const changeFilter = createAction("contact/changeFilter");
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  addContactRequest,
-  addContactSucces,
-  addContactError,
-  removeContactError,
+  changeFilter,
+  addContactsRequest,
+  addContactsSucces,
+  addContactsErr,
+  fetchContactsRequest,
+  fetchContactsSucces,
+  fetchContactsErr,
   removeContactRequest,
   removeContactSucces,
-  fetchContactRequest,
-  fetchContactSucces,
-  fetchContactError,
-  removeContact,
-  changeFilter,
+  removeContactErr,
 };
+
+//==============До рефактора==========================
+// const addContact = ({ name, number }) => ({
+//   type: taskTypes.ADD,
+//   payload: {
+//     task: {
+//       id: uuid(),
+//       name,
+//       number,
+//     },
+//   },
+// });
+
+// const removeContact = (contactId) => ({
+//   type: taskTypes.REMOVE,
+//   payload: {
+//     contactId,
+//   },
+// });
+
+// const changeFilter = (filter) => ({
+//   type: taskTypes.CHANGE_FILTER,
+//   payload: {
+//     filter,
+//   },
+// });
+//==============До рефактора==========================

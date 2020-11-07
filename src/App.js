@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import Container from "./components/Container/Container";
 import ContactList from "./components/ContactList/ContacrList";
 import ContactForm from "./components/ContactForm/ContactForm";
-import { connect } from "react-redux";
+
 import Filter from "./components/Filter/Filter";
-import taskOperation from "./redux/tasks/taskOperations";
+import taskOperations from "./redux/tasks/taskOperations";
+import { connect } from "react-redux";
 
 class App extends Component {
   componentDidMount() {
-    this.props.onFetchContacts();
+    this.props.onfetchContacts();
   }
-
   render() {
     return (
       <>
@@ -27,7 +27,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = {
-  onFetchContacts: taskOperation.fetchContacts,
+  onfetchContacts: taskOperations.fetchContacts,
 };
 
 export default connect(null, mapDispatchToProps)(App);
