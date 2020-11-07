@@ -29,30 +29,3 @@ export default {
   removeContactSucces,
   removeContactErr,
 };
-
-//==============До рефактора==========================
-// const addContact = ({ name, number }) => ({
-//   type: taskTypes.ADD,
-//   payload: {
-//     task: {
-//       id: uuid(),
-//       name,
-//       number,
-//     },
-//   },
-// });
-
-// const removeContact = (contactId) => ({
-//   type: taskTypes.REMOVE,
-//   payload: {
-//     contactId,
-//   },
-// });
-
-// const changeFilter = (filter) => ({
-//   type: taskTypes.CHANGE_FILTER,
-//   payload: {
-//     filter,
-//   },
-// });
-//==============До рефактора==========================
