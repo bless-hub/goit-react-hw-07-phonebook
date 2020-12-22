@@ -2,15 +2,18 @@
   "name": "hw7",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://bless-hub.github.io/goit-react-hw-07-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-transition-group": "^4.4.1",
     "toastr": "^2.1.4",
@@ -21,6 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "server": "json-server -d 260 -p 2000 --watch database.json"
   },
   "eslintConfig": {

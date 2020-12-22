@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import style from "./ContactForm.module.css";
 import { connect } from "react-redux";
-import taskOperations from "../../redux/tasks/taskOperations";
 import logo from "./Logo.module.css";
 import { CSSTransition } from "react-transition-group";
+import authOperation from "../../redux/auth/authOperation";
 
-class ContactForm extends Component {
+class RegisterPage extends Component {
   state = {
     name: "",
     email: "",
@@ -19,16 +19,16 @@ class ContactForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContact(this.state);
+    this.props.onRegister(this.state);
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: "", number: "" });
+    this.setState({ name: "", email: "", password: "" });
   };
 
   render() {
-    const { name, number } = this.state;
+    const { name, email, password } = this.state;
     return (
       <>
         <CSSTransition
@@ -55,9 +55,9 @@ class ContactForm extends Component {
             Email
             <input
               className={style.input}
-              type="text"
-              name="number"
-              value={number}
+              type="email"
+              name="email"
+              value={email}
               onChange={this.handleChange}
             />
           </label>
@@ -65,9 +65,9 @@ class ContactForm extends Component {
             Password
             <input
               className={style.input}
-              type="text"
-              name="number"
-              value={number}
+              type="password"
+              name="password"
+              value={password}
               onChange={this.handleChange}
             />
           </label>
@@ -81,7 +81,7 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = {
-  addContact: taskOperations.addContact,
+  onRegister: authOperation.signInUser,
 };
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(null, mapDispatchToProps)(RegisterPage);

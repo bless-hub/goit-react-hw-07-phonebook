@@ -7,14 +7,13 @@ import { CSSTransition } from "react-transition-group";
 
 class ContactForm extends Component {
   state = {
-    name: "",
     email: "",
     password: "",
   };
 
   handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
+    const { email, value } = e.target;
+    this.setState({ [email]: value });
   };
 
   handleSubmit = (e) => {
@@ -28,7 +27,7 @@ class ContactForm extends Component {
   };
 
   render() {
-    const { name, number } = this.state;
+    const { email, password } = this.state;
     return (
       <>
         <CSSTransition
@@ -42,22 +41,12 @@ class ContactForm extends Component {
         </CSSTransition>
         <form className={style.form} onSubmit={this.handleSubmit}>
           <label className={style.label}>
-            Name
-            <input
-              className={style.input}
-              type="text"
-              name="name"
-              value={name}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className={style.label}>
             Email
             <input
               className={style.input}
               type="text"
-              name="number"
-              value={number}
+              name="name"
+              value={email}
               onChange={this.handleChange}
             />
           </label>
@@ -67,12 +56,12 @@ class ContactForm extends Component {
               className={style.input}
               type="text"
               name="number"
-              value={number}
+              value={password}
               onChange={this.handleChange}
             />
           </label>
           <button className={style.button} type="submit">
-            Registered
+            Login
           </button>
         </form>
       </>
