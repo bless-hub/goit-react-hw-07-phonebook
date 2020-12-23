@@ -12,18 +12,14 @@ class RegisterPage extends Component {
     password: "",
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
+  handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onRegister(this.state);
-    this.reset();
-  };
 
-  reset = () => {
+    this.props.onRegister({ ...this.state });
     this.setState({ name: "", email: "", password: "" });
   };
 
@@ -38,7 +34,7 @@ class RegisterPage extends Component {
           unmountOnExit
           classNames={logo}
         >
-          <h1>PhoneBook</h1>
+          <h1>Registration</h1>
         </CSSTransition>
         <form className={style.form} onSubmit={this.handleSubmit}>
           <label className={style.label}>
@@ -81,7 +77,7 @@ class RegisterPage extends Component {
 }
 
 const mapDispatchToProps = {
-  onRegister: authOperation.signInUser,
+  onRegister: authOperation.register,
 };
 
 export default connect(null, mapDispatchToProps)(RegisterPage);

@@ -1,29 +1,30 @@
 import React, { Component } from "react";
 import style from "./ContactForm.module.css";
 import { connect } from "react-redux";
-import taskOperations from "../../redux/tasks/taskOperations";
+// import taskOperations from "../../redux/tasks/taskOperations";
+import authOperation from "../../redux/auth/authOperation";
 import logo from "./Logo.module.css";
 import { CSSTransition } from "react-transition-group";
 
-class ContactForm extends Component {
+class LoginPage extends Component {
   state = {
     email: "",
     password: "",
   };
 
   handleChange = (e) => {
-    const { email, value } = e.target;
-    this.setState({ [email]: value });
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContact(this.state);
+    this.props.onLogin(this.state);
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: "", number: "" });
+    this.setState({ email: "", password: "" });
   };
 
   render() {
@@ -37,7 +38,7 @@ class ContactForm extends Component {
           unmountOnExit
           classNames={logo}
         >
-          <h1>PhoneBook</h1>
+          <h1>Login</h1>
         </CSSTransition>
         <form className={style.form} onSubmit={this.handleSubmit}>
           <label className={style.label}>
@@ -45,7 +46,7 @@ class ContactForm extends Component {
             <input
               className={style.input}
               type="text"
-              name="name"
+              name="email"
               value={email}
               onChange={this.handleChange}
             />
@@ -55,7 +56,7 @@ class ContactForm extends Component {
             <input
               className={style.input}
               type="text"
-              name="number"
+              name="password"
               value={password}
               onChange={this.handleChange}
             />
@@ -70,7 +71,7 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = {
-  addContact: taskOperations.addContact,
+  onLogin: authOperation.logIn,
 };
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(null, mapDispatchToProps)(LoginPage);

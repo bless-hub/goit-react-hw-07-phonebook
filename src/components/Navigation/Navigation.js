@@ -3,7 +3,11 @@ import { NavLink } from "react-router-dom";
 import style from "./navigation.module.css";
 import routers from "../../routes/routes";
 
-const Navigation = () => (
+import authSelectors from "../../redux/auth/authSelectors";
+import { connect } from "react-redux";
+import NavMenu from "../Appbar/navMenu";
+
+const Navigation = ({ isAuthenticated }) => (
   <header className={style.header}>
     <div className={style.nav}>
       <ul className={style.list}>
@@ -15,16 +19,6 @@ const Navigation = () => (
             activeClassName={style.link_active}
           >
             HOME
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink
-            to="/movies"
-            className={style.link}
-            activeClassName={style.link_active}
-          >
-            Tasks
           </NavLink>
         </li>
       </ul>
@@ -49,7 +43,12 @@ const Navigation = () => (
         </li>
       </ul>
     </div>
+    {isAuthenticated && <NavMenu />}
   </header>
 );
 
-export default Navigation;
+const mapStateToProps = (state) => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(Navigation);
