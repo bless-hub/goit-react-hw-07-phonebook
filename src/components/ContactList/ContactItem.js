@@ -16,7 +16,7 @@ function ContactItem({ name, number, removeContact, id }) {
   );
 }
 ContactItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string,
 };

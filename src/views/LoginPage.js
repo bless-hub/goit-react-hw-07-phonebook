@@ -1,29 +1,31 @@
 import React, { Component } from "react";
-import style from "./ContactForm.module.css";
+import style from "./RegisterPage.module.css";
+// import taskOperations from "../../redux/tasks/taskOperations";
 import { connect } from "react-redux";
-import taskOperations from "../../redux/tasks/taskOperations";
 import logo from "./Logo.module.css";
 import { CSSTransition } from "react-transition-group";
+import { authOperations } from "../redux/auth";
 
-class ContactForm extends Component {
+class LoginPage extends Component {
   state = {
-    name: "",
-    number: "",
+    email: "",
+    password: "",
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
+  handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContact(this.state);
-    this.setState({ name: "", number: "" });
+
+    this.props.onLogin(this.state);
+
+    this.setState({ name: "", email: "", password: "" });
   };
 
   render() {
-    const { name, number } = this.state;
+    const { email, password } = this.state;
     return (
       <>
         <CSSTransition
@@ -33,39 +35,40 @@ class ContactForm extends Component {
           unmountOnExit
           classNames={logo}
         >
-          <h1>PhoneBook</h1>
+          <h1>Login</h1>
         </CSSTransition>
         <form className={style.form} onSubmit={this.handleSubmit}>
           <label className={style.label}>
-            Name
+            Email
             <input
               className={style.input}
-              type="text"
-              name="name"
-              value={name}
+              type="email"
+              name="email"
+              value={email}
               onChange={this.handleChange}
             />
           </label>
           <label className={style.label}>
-            Number
+            Password
             <input
               className={style.input}
-              type="text"
-              name="number"
-              value={number}
+              type="password"
+              name="password"
+              value={password}
               onChange={this.handleChange}
             />
           </label>
           <button className={style.button} type="submit">
-            Add Contact
+            Login
           </button>
         </form>
       </>
     );
   }
 }
+
 const mapDispatchToProps = {
-  addContact: taskOperations.addContact,
+  onLogin: authOperations.logIn,
 };
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(null, mapDispatchToProps)(LoginPage);

@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import style from "./ContactForm.module.css";
+import style from "./RegisterPage.module.css";
+import authOperations from "../redux/auth/authOperations";
 import { connect } from "react-redux";
-import taskOperations from "../../redux/tasks/taskOperations";
+// import taskOperations from "../../redux/tasks/taskOperations";
+
 import logo from "./Logo.module.css";
 import { CSSTransition } from "react-transition-group";
 
-class ContactForm extends Component {
+class RegisterPage extends Component {
   state = {
     name: "",
-    number: "",
+    email: "",
+    password: "",
   };
 
   handleChange = (e) => {
@@ -16,14 +19,20 @@ class ContactForm extends Component {
     this.setState({ [name]: value });
   };
 
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContact(this.state);
-    this.setState({ name: "", number: "" });
+
+    this.props.onRegister(this.state);
+
+    this.setState({ name: "", email: "", password: "" });
   };
 
   render() {
-    const { name, number } = this.state;
+    const { name, email, password } = this.state;
     return (
       <>
         <CSSTransition
@@ -33,39 +42,50 @@ class ContactForm extends Component {
           unmountOnExit
           classNames={logo}
         >
-          <h1>PhoneBook</h1>
+          <h1>Registration</h1>
         </CSSTransition>
         <form className={style.form} onSubmit={this.handleSubmit}>
           <label className={style.label}>
             Name
             <input
               className={style.input}
-              type="text"
+              type="name"
               name="name"
               value={name}
               onChange={this.handleChange}
             />
           </label>
           <label className={style.label}>
-            Number
+            Email
             <input
               className={style.input}
-              type="text"
-              name="number"
-              value={number}
+              type="email"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label className={style.label}>
+            Password
+            <input
+              className={style.input}
+              type="password"
+              name="password"
+              value={password}
               onChange={this.handleChange}
             />
           </label>
           <button className={style.button} type="submit">
-            Add Contact
+            Registration
           </button>
         </form>
       </>
     );
   }
 }
+
 const mapDispatchToProps = {
-  addContact: taskOperations.addContact,
+  onRegister: authOperations.register,
 };
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(null, mapDispatchToProps)(RegisterPage);

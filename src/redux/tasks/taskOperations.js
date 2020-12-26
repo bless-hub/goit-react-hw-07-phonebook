@@ -1,10 +1,12 @@
 import taskActions from "./taskActions";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com/";
+
 const addContact = ({ name, number }) => (dispatch) => {
   dispatch(taskActions.addContactsRequest());
   axios
-    .post("http://localhost:2000/contacts", { name, number })
+    .post("/contacts", { name, number })
     .then((res) => {
       dispatch(taskActions.addContactsSucces(res.data));
     })
@@ -14,15 +16,16 @@ const addContact = ({ name, number }) => (dispatch) => {
 const fetchContacts = () => (dispatch) => {
   dispatch(taskActions.fetchContactsRequest());
   axios
-    .get("http://localhost:2000/contacts")
+    .get("/contacts")
     .then(({ data }) => dispatch(taskActions.fetchContactsSucces(data)))
+
     .catch((err) => dispatch(taskActions.fetchContactsErr(err)));
 };
 
 const removeContact = (id) => (dispatch) => {
   dispatch(taskActions.removeContactRequest);
   axios
-    .delete(`http://localhost:2000/contacts/${id}`)
+    .delete(`/contacts/${id}`)
     .then(() => dispatch(taskActions.removeContactSucces(id)))
     .catch((err) => dispatch(taskActions.removeContactErr(err)));
 };
