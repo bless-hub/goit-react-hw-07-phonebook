@@ -32,6 +32,7 @@ const logIn = (credentials) => async (dispatch) => {
     .post("/users/login", credentials)
     .then((res) => {
       token.set(res.data.token);
+
       dispatch(authActions.loginSucces(res.data));
       console.log(res.data);
     })
@@ -45,6 +46,7 @@ const logOut = () => async (dispatch) => {
   try {
     await axios.post("/users/logout");
     token.unset();
+    console.log(token);
     dispatch(authActions.logoutSucces());
   } catch (error) {
     dispatch(authActions.logoutErr(error.message));

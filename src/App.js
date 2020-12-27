@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Container from "./components/Container/Container";
 // import ContactList from "./components/ContactList/ContacrList";
 // import ContactForm from "./components/ContactForm/ContactForm";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import MainPage from "./views/MainPage";
 import ContactPage from "./views/ContactPage";
 
