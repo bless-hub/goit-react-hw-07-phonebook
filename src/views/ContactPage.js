@@ -7,10 +7,6 @@ import taskOperations from "../redux/tasks/taskOperations";
 import { connect } from "react-redux";
 
 class ContactPage extends Component {
-  componentDidMount() {
-    this.props.onfetchContacts();
-  }
-
   render() {
     return (
       <>

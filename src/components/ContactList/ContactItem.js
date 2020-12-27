@@ -5,7 +5,7 @@ import taskOperations from "../../redux/tasks/taskOperations";
 import style from "./ContactList.module.css";
 import taskSelectors from "../../redux/tasks/taskSelectors";
 
-function ContactItem({ name, number, removeContact, id }) {
+function ContactItem({ name, number, removeContact, id, isLogin }) {
   return (
     <li key={id} className={style.item}>
       {name} {number}
@@ -17,7 +17,7 @@ function ContactItem({ name, number, removeContact, id }) {
 }
 ContactItem.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   number: PropTypes.string,
 };
 

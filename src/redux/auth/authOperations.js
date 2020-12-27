@@ -19,8 +19,8 @@ const register = (credentials) => async (dispatch) => {
     .post("/users/signup", credentials)
     .then((res) => {
       console.log(res);
-      dispatch(authActions.registerSucces(res.data));
       token.set(res.data.token);
+      dispatch(authActions.registerSucces(res.data));
     })
     .catch((error) => dispatch(authActions.registerUserErr(error.message)));
 };
@@ -31,10 +31,9 @@ const logIn = (credentials) => async (dispatch) => {
   await axios
     .post("/users/login", credentials)
     .then((res) => {
+      token.set(res.data.token);
       dispatch(authActions.loginSucces(res.data));
       console.log(res.data);
-      console.log(res.data.name);
-      token.set(res.data.token);
     })
 
     .catch((error) => dispatch(authActions.loginErr(error.message)));
@@ -48,7 +47,7 @@ const logOut = () => async (dispatch) => {
     token.unset();
     dispatch(authActions.logoutSucces());
   } catch (error) {
-    dispatch(authActions.logoutError(error.message));
+    dispatch(authActions.logoutErr(error.message));
   }
 };
 

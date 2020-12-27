@@ -30,7 +30,7 @@ class App extends Component {
         <AppBar />
         <Container title="PhoneBook">
           <Switch>
-            <Route exact path="/" component={MainPage} />
+            <PublicRouter exact path="/" component={MainPage} />
             <PublicRouter
               restricted={true}
               path="/registration"

@@ -3,28 +3,28 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com/";
 
-const addContact = ({ name, number }) => async (dispatch) => {
+const addContact = ({ name, number }) => (dispatch) => {
   dispatch(taskActions.addContactsRequest());
-  await axios
+  axios
     .post("/contacts", { name, number })
     .then((res) => {
       dispatch(taskActions.addContactsSucces(res.data));
     })
     .catch((err) => dispatch(taskActions.addContactsErr(err)));
 };
-const fetchContacts = () => async (dispatch) => {
+
+const fetchContacts = () => (dispatch) => {
   dispatch(taskActions.fetchContactsRequest());
-  try {
-    const { data } = await axios.get("/contacts");
-    dispatch(taskActions.fetchContactsSuccess(data));
-  } catch (error) {
-    dispatch(taskActions.fetchContactsErr(error));
-  }
+  axios
+    .get("/contacts")
+    .then(({ data }) => dispatch(taskActions.fetchContactsSucces(data)))
+
+    .catch((err) => dispatch(taskActions.fetchContactsErr(err)));
 };
 
-const removeContact = (id) => async (dispatch) => {
+const removeContact = (id) => (dispatch) => {
   dispatch(taskActions.removeContactRequest);
-  await axios
+  axios
     .delete(`/contacts/${id}`)
     .then(() => dispatch(taskActions.removeContactSucces(id)))
     .catch((err) => dispatch(taskActions.removeContactErr(err)));

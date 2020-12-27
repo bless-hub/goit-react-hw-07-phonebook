@@ -10,10 +10,9 @@ const UserMenu = ({ name, onLogout }) => {
     <div>
       <ul className={style.list}>
         <li className={style.link}>Welcome {name}</li>
-        <li type="button" className={style.link}>
+        <button className={style.button} type="button" onClick={onLogout}>
           Logout
-        </li>
-        <button type="button" onClick={onLogout}></button>
+        </button>
       </ul>
     </div>
   );
