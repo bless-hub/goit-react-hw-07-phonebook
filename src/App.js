@@ -14,6 +14,8 @@ import AppBar from "./components/AppBar/AppBar";
 import authOperations from "./redux/auth/authOperations";
 import RegisterPage from "./views/RegisterPage";
 import LoginPage from "./views/LoginPage";
+import PrivateRouter from "./components/PrivateandPublicRouters/PrivateRouter";
+import PublicRouter from "./components/PrivateandPublicRouters/PublicRouter";
 
 import { connect } from "react-redux";
 
@@ -29,9 +31,17 @@ class App extends Component {
         <Container title="PhoneBook">
           <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route path="/registration" component={RegisterPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/contacts" component={ContactPage} />
+            <PublicRouter
+              restricted={true}
+              path="/registration"
+              component={RegisterPage}
+            />
+            <PublicRouter
+              restricted={true}
+              path="/login"
+              component={LoginPage}
+            />
+            <PrivateRouter path="/contacts" component={ContactPage} exact />
           </Switch>
         </Container>
       </>

@@ -5,14 +5,9 @@ import Container from "../components/Container/Container";
 import Filter from "../components/Filter/Filter";
 import taskOperations from "../redux/tasks/taskOperations";
 import { connect } from "react-redux";
-import authSelectors from "../redux/auth/autSelectors";
 
 class ContactPage extends Component {
   componentDidMount() {
-    if (!this.props.isAutorization) {
-      this.props.history.replace("/login");
-      return;
-    }
     this.props.onfetchContacts();
   }
 
@@ -30,12 +25,9 @@ class ContactPage extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  isAutorization: authSelectors.isAuthenticated(state),
-});
 
 const mapDispatchToProps = {
   onfetchContacts: taskOperations.fetchContacts,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactPage);
+export default connect(null, mapDispatchToProps)(ContactPage);
